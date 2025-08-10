@@ -1,0 +1,28 @@
+
+name: 'Setup Node.js'
+description: 'Sets up a Node.js environment for use in actions'
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: true
+    default: '16'
+  cache:
+    description: 'Enable caching of Node.js modules'
+    required: false
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: 'Set up Node.js'
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ inputs.cache }}
+    - name: 'Install dependencies'
+      shell: bash
+      run: run npm install
+    - name: 'Run tests'
+      shell: bash
+      run: |
+        run npm test
+        echo "result=passed" >> $GITHUB_OUTPUT

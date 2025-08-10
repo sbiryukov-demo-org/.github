@@ -1,0 +1,27 @@
+name: 'Setup Java'
+description: 'Sets up a Java environment with Maven for use in actions'
+inputs:
+  java-version:
+    description: 'Java version to use'
+    required: true
+    default: '11'
+  cache:
+    description: 'Enable caching of Java dependencies'
+    required: false
+    default: 'maven'
+runs:
+  using: composite
+  steps:
+    - name: 'Set up Java'
+      uses: actions/setup-java@v3
+      with:
+        java-version: ${{ inputs.java-version }}
+        cache: ${{ inputs.cache }}
+    - name: 'Install dependencies'
+      shell: bash
+      run: mvn clean compile
+    - name: 'Run tests'
+      shell: bash
+      run: |
+        mvn test
+        echo "result=passed" >> $GITHUB_OUTPUT
