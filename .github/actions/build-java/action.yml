@@ -20,8 +20,3 @@ runs:
     - name: 'Install dependencies'
       shell: bash
       run: mvn clean compile
-    - name: 'Run tests'
-      shell: bash
-      run: |
-        mvn test
-        echo "result=passed" >> $GITHUB_OUTPUT

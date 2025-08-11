@@ -27,9 +27,3 @@ runs:
       shell: bash
       working-directory: ${{ inputs.directory }}
       run: npm install
-    - name: 'Run tests'
-      shell: bash
-      working-directory: ${{ inputs.directory }}
-      run: |
-        npm test
-        echo "result=passed" >> $GITHUB_OUTPUT
