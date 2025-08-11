@@ -20,9 +20,9 @@ runs:
         cache: ${{ inputs.cache }}
     - name: 'Install dependencies'
       shell: bash
-      run: run npm install
+      run: npm install
     - name: 'Run tests'
       shell: bash
       run: |
-        run npm test
+        npm test
         echo "result=passed" >> $GITHUB_OUTPUT
