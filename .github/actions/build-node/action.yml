@@ -9,7 +9,7 @@ inputs:
   cache:
     description: 'Enable caching of Node.js modules'
     required: false
-    default: 'true'
+    default: 'npm'
 runs:
   using: composite
   steps:
